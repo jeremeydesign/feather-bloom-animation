@@ -80,10 +80,27 @@ export default {
             height: "0",
           },
         },
+        "feather-float": {
+          "0%": {
+            opacity: "0",
+            transform: "translate(-50%, -50%) translateY(0) rotate(0deg)",
+          },
+          "10%": {
+            opacity: "1",
+          },
+          "70%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translate(-50%, -50%) translateY(-80px) translateX(var(--drift-x, 30px)) rotate(var(--end-rotation, 45deg))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "feather-float": "feather-float 1.5s ease-out forwards",
       },
     },
   },
