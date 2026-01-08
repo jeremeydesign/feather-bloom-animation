@@ -1,9 +1,7 @@
 import FeatherAnimation from "@/components/FeatherAnimation";
 import { Button } from "@/components/ui/button";
-
 const Index = () => {
-  return (
-    <div className="flex min-h-screen flex-col items-center bg-background px-6 py-16">
+  return <div className="min-h-screen flex-col bg-background px-6 py-16 flex items-center justify-center">
       {/* Logo with feather animation */}
       <div className="mb-24">
         <FeatherAnimation />
@@ -22,14 +20,9 @@ const Index = () => {
       </p>
 
       {/* CTA Button */}
-      <Button
-        variant="outline"
-        className="rounded-full border-foreground px-10 py-6 text-base font-medium text-foreground hover:bg-foreground hover:text-background"
-      >
+      <Button variant="outline" className="rounded-full border-foreground px-10 py-6 text-base font-medium text-foreground hover:bg-foreground hover:text-background">
         Say Hello
       </Button>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
