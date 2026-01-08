@@ -98,28 +98,32 @@ const FeatherAnimation = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Feathers behind the logo */}
+      <div className="absolute inset-0 overflow-visible z-0">
+        {feathers.map((feather) => (
+          <div
+            key={feather.id}
+            className="absolute pointer-events-none animate-feather-float"
+            style={{
+              left: feather.x,
+              top: feather.y,
+              transform: `translate(-50%, -50%) scale(${feather.scale}) rotate(${feather.rotation}deg)`,
+              animationDelay: `${feather.delay}s`,
+              "--drift-x": `${feather.driftX}px`,
+              "--end-rotation": `${feather.endRotation}deg`,
+            } as React.CSSProperties}
+          >
+            <FeatherSVG gradientPosition={feather.gradientPosition} />
+          </div>
+        ))}
+      </div>
+
+      {/* Logo on top */}
       <img
         src={ploomLogo}
         alt="Ploom Logo"
-        className="w-48 h-auto transition-transform duration-300 hover:scale-105"
+        className="w-48 h-auto relative z-10 transition-transform duration-300 hover:scale-105"
       />
-
-      {feathers.map((feather) => (
-        <div
-          key={feather.id}
-          className="absolute pointer-events-none animate-feather-float"
-          style={{
-            left: feather.x,
-            top: feather.y,
-            transform: `translate(-50%, -50%) scale(${feather.scale}) rotate(${feather.rotation}deg)`,
-            animationDelay: `${feather.delay}s`,
-            "--drift-x": `${feather.driftX}px`,
-            "--end-rotation": `${feather.endRotation}deg`,
-          } as React.CSSProperties}
-        >
-          <FeatherSVG gradientPosition={feather.gradientPosition} />
-        </div>
-      ))}
     </div>
   );
 };
