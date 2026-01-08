@@ -86,10 +86,10 @@ export default {
             transform: "translate(-50%, -50%) translateY(0) rotate(0deg)",
           },
           "10%": {
-            opacity: "1",
+            opacity: "var(--base-opacity, 1)",
           },
           "70%": {
-            opacity: "1",
+            opacity: "var(--base-opacity, 1)",
           },
           "100%": {
             opacity: "0",

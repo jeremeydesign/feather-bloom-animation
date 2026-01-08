@@ -10,6 +10,7 @@ interface Feather {
   delay: number;
   driftX: number;
   endRotation: number;
+  opacity: number;
 }
 
 const FeatherSVG = ({ id }: { id: number }) => (
@@ -57,6 +58,7 @@ const FeatherAnimation = () => {
         delay: Math.random() * 0.2,
         driftX: (Math.random() - 0.5) * 80,
         endRotation: Math.random() * 90 - 45,
+        opacity: 0.5 + Math.random() * 0.5,
       });
     }
 
@@ -102,6 +104,7 @@ const FeatherAnimation = () => {
               animationDelay: `${feather.delay}s`,
               "--drift-x": `${feather.driftX}px`,
               "--end-rotation": `${feather.endRotation}deg`,
+              "--base-opacity": feather.opacity,
             } as React.CSSProperties}
           >
             <FeatherSVG id={feather.id} />
