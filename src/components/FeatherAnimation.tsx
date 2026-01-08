@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import ploomLogo from "@/assets/ploom-logo.svg";
 
 interface Feather {
@@ -49,16 +49,17 @@ const FeatherSVG = ({ gradientPosition }: { gradientPosition: number }) => (
 const FeatherAnimation = () => {
   const [feathers, setFeathers] = useState<Feather[]>([]);
   const [featherCounter, setFeatherCounter] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const generateFeathers = useCallback(() => {
+  const generateFeathers = useCallback((mouseX: number, mouseY: number) => {
     const count = Math.floor(Math.random() * 3) + 3; // 3-5 feathers
     const newFeathers: Feather[] = [];
 
     for (let i = 0; i < count; i++) {
       newFeathers.push({
         id: featherCounter + i,
-        x: Math.random() * 100 - 50,
-        y: Math.random() * 40 - 20,
+        x: mouseX + (Math.random() * 20 - 10),
+        y: mouseY + (Math.random() * 20 - 10),
         scale: 0.5 + Math.random() * 0.8,
         rotation: Math.random() * 360,
         delay: Math.random() * 0.3,
@@ -69,8 +70,21 @@ const FeatherAnimation = () => {
     }
 
     setFeatherCounter((prev) => prev + count);
-    setFeathers(newFeathers);
+    setFeathers((prev) => [...prev, ...newFeathers]);
   }, [featherCounter]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    
+    const rect = containerRef.current.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // Throttle feather generation - only create new ones occasionally
+    if (Math.random() > 0.85) {
+      generateFeathers(mouseX, mouseY);
+    }
+  }, [generateFeathers]);
 
   const handleMouseLeave = () => {
     // Feathers will fade out via CSS animation
@@ -79,8 +93,9 @@ const FeatherAnimation = () => {
 
   return (
     <div
+      ref={containerRef}
       className="relative inline-block cursor-pointer"
-      onMouseEnter={generateFeathers}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       <img
@@ -94,9 +109,9 @@ const FeatherAnimation = () => {
           key={feather.id}
           className="absolute pointer-events-none animate-feather-float"
           style={{
-            left: "50%",
-            top: "50%",
-            transform: `translate(-50%, -50%) translate(${feather.x}px, ${feather.y}px) scale(${feather.scale}) rotate(${feather.rotation}deg)`,
+            left: feather.x,
+            top: feather.y,
+            transform: `translate(-50%, -50%) scale(${feather.scale}) rotate(${feather.rotation}deg)`,
             animationDelay: `${feather.delay}s`,
             "--drift-x": `${feather.driftX}px`,
             "--end-rotation": `${feather.endRotation}deg`,
