@@ -8,19 +8,19 @@ const Index = () => {
       </div>
 
       {/* Hero headline */}
-      <h1 className="mb-8 text-center font-serif text-6xl font-normal leading-tight tracking-tight text-foreground md:text-7xl lg:text-8xl">
+      <h1 className="mb-8 text-center font-display text-6xl font-light leading-tight tracking-tight text-foreground md:text-7xl lg:text-8xl">
         A new way
         <br />
         to print
       </h1>
 
       {/* Subtext */}
-      <p className="mb-12 text-center text-lg text-muted-foreground">
+      <p className="mb-12 text-center font-body text-lg text-muted-foreground">
         Coming Soon. In the meantime...
       </p>
 
       {/* CTA Button */}
-      <Button variant="outline" className="rounded-full border-foreground px-10 py-6 text-base font-medium text-foreground hover:bg-foreground hover:text-background">
+      <Button variant="outline" className="rounded-full border-foreground px-10 py-6 font-body text-base font-medium text-foreground hover:bg-foreground hover:text-background">
         Say Hello
       </Button>
     </div>;
