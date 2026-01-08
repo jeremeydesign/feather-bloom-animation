@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import ploomLogo from "@/assets/ploom-logo.svg";
+import featherSvg from "@/assets/feather.svg";
 
 interface Feather {
   id: number;
@@ -8,43 +9,9 @@ interface Feather {
   scale: number;
   rotation: number;
   delay: number;
-  gradientPosition: number;
   driftX: number;
   endRotation: number;
 }
-
-const FeatherSVG = ({ gradientPosition }: { gradientPosition: number }) => (
-  <svg
-    width="24"
-    height="40"
-    viewBox="0 0 24 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient
-        id={`featherGradient-${gradientPosition}`}
-        x1="0%"
-        y1="0%"
-        x2="100%"
-        y2="100%"
-      >
-        <stop offset="0%" stopColor="#DE8F71" />
-        <stop offset="100%" stopColor="#A66D91" />
-      </linearGradient>
-    </defs>
-    <path
-      d="M12 0C12 0 4 8 4 20C4 32 12 40 12 40C12 40 20 32 20 20C20 8 12 0 12 0Z"
-      fill={`url(#featherGradient-${gradientPosition})`}
-    />
-    <path
-      d="M12 5V35"
-      stroke="rgba(255,255,255,0.3)"
-      strokeWidth="1"
-      strokeLinecap="round"
-    />
-  </svg>
-);
 
 const FeatherAnimation = () => {
   const [feathers, setFeathers] = useState<Feather[]>([]);
@@ -60,10 +27,9 @@ const FeatherAnimation = () => {
         id: featherCounter + i,
         x: mouseX + (Math.random() * 20 - 10),
         y: mouseY + (Math.random() * 20 - 10),
-        scale: 0.5 + Math.random() * 0.8,
+        scale: 0.08 + Math.random() * 0.06,
         rotation: Math.random() * 360,
-        delay: Math.random() * 0.3,
-        gradientPosition: Math.random(),
+        delay: Math.random() * 0.2,
         driftX: (Math.random() - 0.5) * 80,
         endRotation: Math.random() * 90 - 45,
       });
@@ -101,9 +67,11 @@ const FeatherAnimation = () => {
       {/* Feathers behind the logo */}
       <div className="absolute inset-0 overflow-visible z-0">
         {feathers.map((feather) => (
-          <div
+          <img
             key={feather.id}
-            className="absolute pointer-events-none animate-feather-float"
+            src={featherSvg}
+            alt=""
+            className="absolute pointer-events-none animate-feather-float w-auto h-auto"
             style={{
               left: feather.x,
               top: feather.y,
@@ -112,9 +80,7 @@ const FeatherAnimation = () => {
               "--drift-x": `${feather.driftX}px`,
               "--end-rotation": `${feather.endRotation}deg`,
             } as React.CSSProperties}
-          >
-            <FeatherSVG gradientPosition={feather.gradientPosition} />
-          </div>
+          />
         ))}
       </div>
 
