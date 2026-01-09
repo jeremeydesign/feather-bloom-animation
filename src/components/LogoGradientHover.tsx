@@ -41,7 +41,7 @@ const LogoGradientHover = () => {
       
       {/* Gradient overlay logo (visible when hovering) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-300 ${isHovering ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 transition-opacity duration-500 ease-out ${isHovering ? 'opacity-100' : 'opacity-0'}`}
         style={{
           maskImage: `url(${ploomLogo})`,
           WebkitMaskImage: `url(${ploomLogo})`,
