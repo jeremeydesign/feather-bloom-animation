@@ -8,7 +8,7 @@ const Index = () => {
       </div>
 
       {/* Hero headline */}
-      <h1 className="mb-8 text-center font-display text-6xl font-medium leading-tight tracking-tight text-foreground md:text-7xl lg:text-8xl">
+      <h1 className="mb-8 text-center font-display text-7xl font-medium leading-tight tracking-tight text-foreground md:text-8xl lg:text-9xl">
         A new way
         <br />
         to print
