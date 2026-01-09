@@ -1,10 +1,10 @@
-import FeatherAnimation from "@/components/FeatherAnimation";
+import LogoGradientHover from "@/components/LogoGradientHover";
 import { Button } from "@/components/ui/button";
 const Index = () => {
   return <div className="min-h-screen flex-col bg-background px-6 py-16 flex items-center justify-center">
-      {/* Logo with feather animation */}
+      {/* Logo with gradient hover effect */}
       <div className="mb-24">
-        <FeatherAnimation />
+        <LogoGradientHover />
       </div>
 
       {/* Hero headline */}
