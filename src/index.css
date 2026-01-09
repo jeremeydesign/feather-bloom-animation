@@ -106,9 +106,9 @@ All colors MUST be HSL.
 
 @keyframes gradientPulse {
   0%, 100% {
-    background-size: 100% 100%;
+    background-size: 200% 200%;
   }
   50% {
-    background-size: 200% 200%;
+    background-size: 300% 300%;
   }
 }
